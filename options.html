@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Flow Recorder Safe 设置</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:820px;margin:30px auto;padding:0 20px}
+label{display:block;font-weight:bold;margin:16px 0 6px}
+input[type=text]{width:100%;padding:9px;box-sizing:border-box}
+button{padding:8px 14px;margin-top:14px}
+.note{background:#f6f6f6;padding:12px;border-radius:8px;line-height:1.6}
+#status{margin-left:10px}
+</style>
+</head>
+<body>
+<h1>Flow Recorder Safe v3.2</h1>
+
+<div class="note">
+Google Sheet ID 仍固定在 Apps Script 服务端。插件只向你设置的 Web App 发送 Flow 生成记录。
+“名字”只会作为每条记录的一列保存，不读取 Google 账号身份。
+</div>
+
+<label>记录名字</label>
+<input id="userName" type="text" placeholder="例如：张三 / 电脑A / 组员1">
+
+<label>Apps Script Web App URL</label>
+<input id="webAppUrl" type="text" placeholder="https://script.google.com/macros/s/.../exec">
+
+<label>API Key</label>
+<input id="apiKey" type="text" placeholder="建议使用较长的随机字符串">
+
+<label>
+<input id="autoUpload" type="checkbox">
+自动上传
+</label>
+
+<br>
+<button id="save">保存设置</button>
+<button id="test">测试连接</button>
+<span id="status"></span>
+
+<script src="options.js"></script>
+</body>
+</html>

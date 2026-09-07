@@ -1,0 +1,36 @@
+Flow Recorder Safe v3.0 验证清单
+================================
+
+1. 单视频：pending -> video[src] -> 成功
+2. 单视频：pending -> img.thumbnail[src] -> 成功
+3. x2/x3/x4：每个输出独立tracker
+4. 多输出混合：成功 + 失败 + 取消
+5. 相同Prompt连续多次生成，不按Prompt串线
+6. 简体失败：error-title=失败
+7. 繁体失败：error-title=失敗
+8. 不收费失败：本次生成不會收費 -> 失败，计入积分0
+9. 失败后点击重试
+10. 失败后点击重試
+11. 失败后重复使用提示词 -> 下一次Generate继续原recordId
+12. 取消：点击具体取消按钮 + 明确取消卡片
+13. 取消后重复使用提示词 -> 下一代
+14. Flow内部替换整个tile，recordId身份交接
+15. 页面刷新时pending，刷新后成功 -> 恢复并补成功
+16. 页面刷新时pending，刷新后失败 -> 恢复并补失败
+17. 同一视频G1失败，G2同原因再失败，必须识别两次
+18. 不同Flow项目active记录不能互相恢复
+19. Google断网：pendingQueue保留
+20. Google恢复：自动补传
+21. 上传期间本地又更新：旧ack不能删掉新localVersion
+
+
+22. 编辑模式判断：页面存在flow-scene-timeline -> editMode=true
+23. 编辑已有视频：.model-chip="Omni 1.1 Flash" -> Google模型=Omni 1.1 Flash
+24. 延续镜头：button.extend-mode-chip="延续镜头（Veo 3.1 - Lite）" -> Google模型记录完整可见名称
+25. 编辑模式模型修改不能影响原有积分读取/成功失败状态逻辑
+
+
+26. 新工程默认页面：settings-summary有 x2，但初始无积分DOM -> 输入Prompt后应静默预取积分
+27. 新工程默认页面：用户直接按Enter -> startCapture生成前应await一次积分预取
+28. 鼠标移到生成按钮/设置区域 -> 应触发积分预取并缓存
+29. creditInfo() 应能显示 liveCredit / cachedCredit / probeInFlight

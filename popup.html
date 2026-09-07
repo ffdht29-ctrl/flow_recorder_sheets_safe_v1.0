@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Flow Recorder Safe</title>
+<style>
+body{font-family:Arial,sans-serif;width:620px;padding:14px;margin:0}
+h2{margin:0 0 12px;font-size:18px}
+.card{border:1px solid #ddd;border-radius:10px;padding:10px;margin:8px 0}
+.row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
+.good{color:#137333}.warn{color:#8a5a00}.bad{color:#b3261e}
+button{padding:7px 10px;margin:4px 4px 0 0}
+.small{font-size:12px;color:#666;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+th,td{border-bottom:1px solid #eee;padding:5px;text-align:left;vertical-align:top}
+</style>
+</head>
+<body>
+<h2>Flow Recorder Safe v3.2</h2>
+
+<div class="card">
+  <div class="row"><span>最近核对记录</span><b id="recentCount">0 / 10</b></div>
+  <div class="row"><span>正在跟踪生成</span><b id="activeCount" class="warn">0</b></div>
+  <div class="row"><span>待上传保险队列</span><b id="pendingCount" class="warn">0</b></div>
+  <div class="row"><span>最近10条已上传</span><b id="syncedCount" class="good">0</b></div>
+</div>
+
+<div class="card">
+  <button id="options">设置</button>
+  <button id="retry">立即重试上传</button>
+</div>
+
+<div class="card">
+  <b>最近10条</b>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>名字</th>
+        <th>批次/序号</th><th>项目</th>
+        <th>模型</th>
+        <th>请求</th>
+        <th>成功/失败/生成中</th>
+        <th>计入积分</th>
+        <th>生成状态</th>
+        <th>同步</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+
+<div class="small">
+点击生成按钮或在 Prompt 中按 Enter 都会捕捉。每次只跟踪本次新出现的结果位；
+触发前已经在生成的内容不会被算进新记录。v3.2：兼容Flow简繁体取消文案，并保存“取消/重试/重复使用提示词”点击意图。即使Flow随后重建tile丢失dataset，也会用刚刚点击的tile UID/位置恢复到同一输出。实时检测约20ms防抖，2秒轮询兜底。
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

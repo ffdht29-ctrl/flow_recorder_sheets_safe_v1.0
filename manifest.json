@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Flow Recorder Safe",
+  "version": "3.2.0",
+  "description": "Google Flow per-output recorder with proactive credit prefetch for new projects, plus v3.1 edit-mode model capture and v3.0 tracking/recovery/sync.",
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://script.google.com/*",
+    "https://script.googleusercontent.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Flow Recorder Safe"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://flow.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
