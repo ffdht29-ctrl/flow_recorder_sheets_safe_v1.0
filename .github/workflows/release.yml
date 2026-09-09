@@ -35,6 +35,7 @@ jobs:
           cp popup.js release/
           cp options.html release/
           cp options.js release/
+          cp AppsScript_GoogleSheets_Safe.gs release/
 
           cd release
 
